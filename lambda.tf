@@ -1,7 +1,7 @@
 # Lambda Function for Image Processing
 # Using the official AWS Solutions Lambda package
 resource "aws_lambda_function" "image_handler" {
-  function_name = "DynamicImageTransformatio-BackEndImageHandlerLambd-${var.environment_name}"
+  function_name = "${var.name}-image-handler-${var.environment_name}"
   description   = "Serverless Image Handler - Performs image edits and transformations"
   role          = aws_iam_role.lambda_execution.arn
   handler       = "index.handler"
