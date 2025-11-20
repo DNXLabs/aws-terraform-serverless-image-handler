@@ -164,12 +164,12 @@ https://<cloudfront-domain>/image.jpg?grayscale=true
 
 ### Lambda Code Deployment
 
-**IMPORTANT**: This module currently includes a placeholder for the Lambda function code. You need to:
+**IMPORTANT**: This module uses the official AWS Solutions Lambda package for image processing. The Lambda function is automatically deployed from:
 
-1. Build the actual Lambda function code (Node.js with Sharp library)
-2. Package it as a ZIP file
-3. Replace `lambda-placeholder.zip` in the module directory
-4. Or modify the Lambda resource to use an S3 bucket for deployment
+- S3 Bucket: `solutions-{region}`
+- S3 Key: `dynamic-image-transformation-for-amazon-cloudfront/v7.0.7/...`
+
+No manual Lambda code deployment is required. The module handles this automatically.
 
 ### Source Bucket Permissions
 
