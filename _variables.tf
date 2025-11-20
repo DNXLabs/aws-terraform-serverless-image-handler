@@ -109,6 +109,10 @@ variable "lambda_timeout" {
   description = "Timeout for Lambda function in seconds"
   type        = number
   default     = 29
+  validation {
+    condition     = var.lambda_timeout >= 1 && var.lambda_timeout <= 900
+    error_message = "Lambda timeout must be between 1 and 900 seconds."
+  }
 }
 
 variable "enable_s3_object_lambda" {
