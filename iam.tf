@@ -110,7 +110,7 @@ resource "aws_iam_role_policy" "lambda_secrets_manager" {
         Action = [
           "secretsmanager:GetSecretValue"
         ]
-        Resource = "arn:aws:secretsmanager:*:*:secret:${var.secrets_manager_secret}*"
+        Resource = var.secrets_manager_secret != "" ? "arn:aws:secretsmanager:*:*:secret:${var.secrets_manager_secret}*" : null
       }
     ]
   })
