@@ -9,9 +9,9 @@ resource "aws_lambda_function" "image_handler" {
   timeout       = var.lambda_timeout
   memory_size   = var.lambda_memory_size
 
-  # Using the official AWS Solutions Lambda package from CloudFormation
-  s3_bucket = "solutions-${data.aws_region.current.name}"
-  s3_key    = "dynamic-image-transformation-for-amazon-cloudfront/v7.0.7/0168841080e38f8c6c1be6dd80844c95dc42fc23cbb7b366cb88aa7c3e49bf08.zip"
+  # Using the official AWS Solutions Lambda package (local file)
+  filename         = "${path.module}/lambda-image-handler.zip"
+  source_code_hash = filebase64sha256("${path.module}/lambda-image-handler.zip")
 
   environment {
     variables = {
