@@ -225,7 +225,7 @@ resource "aws_s3control_object_lambda_access_point_policy" "image_handler" {
         Principal = {
           Service = "cloudfront.amazonaws.com"
         }
-        Action = "s3-object-lambda:Get*"
+        Action   = "s3-object-lambda:Get*"
         Resource = aws_s3control_object_lambda_access_point.image_handler[0].arn
         Condition = {
           StringEquals = {

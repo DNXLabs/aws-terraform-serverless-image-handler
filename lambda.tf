@@ -15,19 +15,19 @@ resource "aws_lambda_function" "image_handler" {
 
   environment {
     variables = {
-      AUTO_WEBP                        = var.auto_webp ? "Yes" : "No"
-      CORS_ENABLED                     = var.cors_enabled ? "Yes" : "No"
-      CORS_ORIGIN                      = var.cors_origin
-      SOURCE_BUCKETS                   = var.source_buckets
-      ENABLE_SIGNATURE                 = var.enable_signature ? "Yes" : "No"
-      SECRETS_MANAGER                  = var.secrets_manager_secret
-      SECRET_KEY                       = var.secrets_manager_key
-      ENABLE_DEFAULT_FALLBACK_IMAGE    = var.enable_default_fallback_image ? "Yes" : "No"
-      DEFAULT_FALLBACK_IMAGE_BUCKET    = var.fallback_image_s3_bucket
-      DEFAULT_FALLBACK_IMAGE_KEY       = var.fallback_image_s3_key
-      ENABLE_S3_OBJECT_LAMBDA          = var.enable_s3_object_lambda ? "Yes" : "No"
-      SOLUTION_VERSION                 = var.solution_version
-      SOLUTION_ID                      = "custom-image-handler"
+      AUTO_WEBP                     = var.auto_webp ? "Yes" : "No"
+      CORS_ENABLED                  = var.cors_enabled ? "Yes" : "No"
+      CORS_ORIGIN                   = var.cors_origin
+      SOURCE_BUCKETS                = var.source_buckets
+      ENABLE_SIGNATURE              = var.enable_signature ? "Yes" : "No"
+      SECRETS_MANAGER               = var.secrets_manager_secret
+      SECRET_KEY                    = var.secrets_manager_key
+      ENABLE_DEFAULT_FALLBACK_IMAGE = var.enable_default_fallback_image ? "Yes" : "No"
+      DEFAULT_FALLBACK_IMAGE_BUCKET = var.fallback_image_s3_bucket
+      DEFAULT_FALLBACK_IMAGE_KEY    = var.fallback_image_s3_key
+      ENABLE_S3_OBJECT_LAMBDA       = var.enable_s3_object_lambda ? "Yes" : "No"
+      SOLUTION_VERSION              = var.solution_version
+      SOLUTION_ID                   = "custom-image-handler"
     }
   }
 

@@ -116,12 +116,12 @@ resource "aws_iam_role_policy" "metrics_lambda_cloudwatch" {
 
 # SQS Queue for Metrics Processing
 resource "aws_sqs_queue" "metrics_queue" {
-  count                     = var.enable_solution_metrics ? 1 : 0
-  name_prefix               = "${var.name}-metrics-queue-"
-  delay_seconds             = 900 # 15 minutes delay
-  max_message_size          = 1024
-  message_retention_seconds = 86400 # 1 day
-  receive_wait_time_seconds = 20
+  count                      = var.enable_solution_metrics ? 1 : 0
+  name_prefix                = "${var.name}-metrics-queue-"
+  delay_seconds              = 900 # 15 minutes delay
+  max_message_size           = 1024
+  message_retention_seconds  = 86400 # 1 day
+  receive_wait_time_seconds  = 20
   visibility_timeout_seconds = 1020 # 17 minutes
 
   # Enable encryption
@@ -196,13 +196,13 @@ resource "aws_lambda_function" "metrics" {
 
   environment {
     variables = {
-      QUERY_PREFIX   = "${var.name}-"
-      SOLUTION_ID    = var.solution_id
-      SOLUTION_NAME  = "dynamic-image-transformation-for-amazon-cloudfront"
+      QUERY_PREFIX     = "${var.name}-"
+      SOLUTION_ID      = var.solution_id
+      SOLUTION_NAME    = "dynamic-image-transformation-for-amazon-cloudfront"
       SOLUTION_VERSION = var.solution_version
-      UUID           = random_id.uuid.hex
-      EXECUTION_DAY  = var.log_retention_days < 7 ? "*" : "MON"
-      SQS_QUEUE_URL  = aws_sqs_queue.metrics_queue[0].url
+      UUID             = random_id.uuid.hex
+      EXECUTION_DAY    = var.log_retention_days < 7 ? "*" : "MON"
+      SQS_QUEUE_URL    = aws_sqs_queue.metrics_queue[0].url
     }
   }
 
@@ -266,7 +266,7 @@ resource "aws_cloudwatch_event_target" "metrics_lambda" {
         {
           MetricStat = {
             Metric = {
-              Namespace  = "AWS/Lambda"
+              Namespace = "AWS/Lambda"
               Dimensions = [
                 {
                   Name  = "FunctionName"
@@ -283,7 +283,7 @@ resource "aws_cloudwatch_event_target" "metrics_lambda" {
         {
           MetricStat = {
             Metric = {
-              Namespace  = "AWS/CloudFront"
+              Namespace = "AWS/CloudFront"
               Dimensions = [
                 {
                   Name  = "DistributionId"
@@ -305,7 +305,7 @@ resource "aws_cloudwatch_event_target" "metrics_lambda" {
         {
           MetricStat = {
             Metric = {
-              Namespace  = "AWS/CloudFront"
+              Namespace = "AWS/CloudFront"
               Dimensions = [
                 {
                   Name  = "DistributionId"
