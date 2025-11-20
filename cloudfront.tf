@@ -179,7 +179,10 @@ resource "aws_s3_access_point" "image_handler" {
       Principal = {
         Service = "cloudfront.amazonaws.com"
       }
-      Action = "s3:*"
+      Action = [
+        "s3:GetObject",
+        "s3:ListBucket"
+      ]
       Resource = [
         "arn:aws:s3:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:accesspoint/sih-ap-${random_id.uuid.hex}",
         "arn:aws:s3:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:accesspoint/sih-ap-${random_id.uuid.hex}/object/*"
