@@ -99,6 +99,7 @@ module "image_handler" {
 }
 ```
 
+<!-- BEGIN_TF_DOCS -->
 ## Variables
 
 | Name | Description | Type | Default | Required |
@@ -135,6 +136,7 @@ module "image_handler" {
 | lambda_function_arn | Lambda function ARN |
 | lambda_function_name | Lambda function name |
 | cloudfront_logs_bucket | S3 bucket for CloudFront logs |
+<!-- END_TF_DOCS -->
 
 ## Image Transformation Examples
 
