@@ -1,0 +1,45 @@
+# Serverless Image Handler Configuration
+serverless_image_handler:
+  handlers:
+    - name: "image-processor"
+      # Required: Comma-separated list of S3 buckets containing source images
+      source_buckets: "staging-general-assets-bucket-new-xxxxxxxxxxxx"
+      enable_solution_metrics: true  # Add this line to enable metrics
+      # CORS Configuration (matching CloudFormation: No)
+      cors_enabled: false
+      cors_origin: "*"
+      
+      # Demo UI (matching CloudFormation: Yes)
+      deploy_demo_ui: true
+      
+      # CloudWatch Logs Retention (matching CloudFormation: 30 days)
+      log_retention_days: 30
+      
+      # Automatically convert to WebP (matching CloudFormation: Yes)
+      auto_webp: true
+      
+      # URL Signature Validation (matching CloudFormation: No)
+      enable_signature: false
+      secrets_manager_secret: ""
+      secrets_manager_key: ""
+      
+      # Default Fallback Image (matching CloudFormation: No)
+      enable_default_fallback_image: false
+      fallback_image_s3_bucket: ""
+      fallback_image_s3_key: ""
+      
+      # CloudFront Configuration (matching CloudFormation: PriceClass_All)
+      cloudfront_price_class: "PriceClass_All"
+      origin_shield_region: "Disabled"
+      
+      # Lambda Configuration
+      lambda_memory_size: 1024  # MB
+      lambda_timeout: 29        # seconds
+      
+      # S3 Object Lambda (matching CloudFormation: Yes)
+      enable_s3_object_lambda: true
+      
+      # Additional tags
+      tags:
+        Project: "xxxxxxxxx"
+        CostCenter: "Engineering"
