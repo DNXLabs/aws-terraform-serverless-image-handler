@@ -103,6 +103,10 @@ variable "lambda_memory_size" {
   description = "Memory size for Lambda function in MB"
   type        = number
   default     = 1024
+  validation {
+    condition     = var.lambda_memory_size >= 128 && var.lambda_memory_size <= 3008 && (var.lambda_memory_size - 128) % 64 == 0
+    error_message = "Lambda memory size must be between 128 MB and 3008 MB in 64 MB increments."
+  }
 }
 
 variable "lambda_timeout" {
